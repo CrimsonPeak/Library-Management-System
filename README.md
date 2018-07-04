@@ -3,7 +3,7 @@ Library management system for personal (small) libraries. Using PHP, bootstrap, 
 
 Secure login script i used is from [this website](https://de.wikihow.com/Ein-sicheres-Login-Skript-mit-PHP-und-MySQL-erstellen)
 
-# [TO SEE HOW IT LOOKS LIKE](https://www.youtube.com/watch?v=0c00RpnniW8)
+# [TO SEE HOW IT LOOKS LIKE](https://www.youtube.com/watch?v=O8EXLeLzDe8)
 
 # Database Settings
 > To change connection settings in /includes/psl-config.php
