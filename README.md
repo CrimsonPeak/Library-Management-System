@@ -6,7 +6,7 @@ Secure login script i used is from [this website](https://de.wikihow.com/Ein-sic
 # [TO SEE HOW IT LOOKS LIKE](https://www.youtube.com/watch?v=O8EXLeLzDe8)
 
 # Database Settings
-> To change connection settings in /includes/psl-config.php
+> Database connection settings are in /includes/psl-config.php
 
 --> Create Database in phpmyadmin:
 ```
