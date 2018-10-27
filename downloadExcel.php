@@ -1,57 +1,71 @@
 <?php
-include_once 'setSqlQuery.php';
+include_once 'includes/db_connect.php';
+include_once 'includes/functions.php';
 
-$output = '';
-$xls_filename = 'Library_'.date('Y-m-d').'.xls'; // Define Excel (.xls) file name
-
-$sql = "SELECT * FROM $table_name ORDER BY $author";
-$result = $mysqli->query($sql);
-if ($result->num_rows > 0) {
-	$output .= '
-		<table class="table" bordered="1">
-			<tr>
-				<th>'.$isbn_no.'</th>
-				<th>'.$name.'</th>
-				<th>'.$author.'</th>
-				<th>'.$publisher.'</th>
-				<th>'.$print_date.'</th>
-				<th>'.$date_received.'</th>
-				<th>'.$volume.'</th>
-				<th>'.$language.'</th>
-				<th>'.$category.'</th>
-				<th>'.$read.'</th>
-				<th>'.$lend.'</th>
-				<th>'.$lend_to.'</th>
-			</tr>
-	';
-	while ($row = mysqli_fetch_array($result)) {
-		$output .= '
-			<tr>
-				<td>'.$row[$isbn_no].'</td>
-				<td>'.$row[$name].'</td>
-				<td>'.$row[$author].'</td>
-				<td>'.$row[$publisher].'</td>
-				<td>'.$row[$print_date].'</td>
-				<td>'.$row[$date_received].'</td>
-				<td>'.$row[$volume].'</td>
-				<td>'.$row[$language].'</td>
-				<td>'.$row[$category].'</td>
-				<td>'.$row[$read].'</td>
-				<td>'.$row[$lend].'</td>
-				<td>'.$row[$lend_to].'</td>
-			</tr>
-	';
-	}
-	$output .= '</table>';
-
-	// Convert to UTF-16LE
-	$output = mb_convert_encoding($output, 'UTF-16LE', 'UTF-8'); 
-	// Prepend BOM
-	$output = "\xFF\xFE" . $output;
-
-	header("Content-Type: application/xls");
-	header("Content-Disposition: attachment; filename=".$xls_filename);
-	echo $output;
-}
-
+sec_session_start();
+include 'languages/langConfig.php';
 ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Download</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="css/bootstrap.min.css">
+          <link rel="stylesheet" href="css/library.css">
+        <link rel="stylesheet" href="styles/main.css" />
+        <script src="js/jquery.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+        <?php if (login_check($mysqli) == true) : ?>
+            <div class="container">
+
+                <!-- Static navbar -->
+                  <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                      <div class="navbar-header col-md-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                        </button>
+                        <h4><?php echo $lang['register_title'] ?></h4>
+                      </div>
+
+                      <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right navBar">
+                          <li><a href="home.php"><img class="button-image" src="images/home.png"> <?php echo $lang['nav_home'] ?></a></li>
+                          <li><a href="new.php"><img class="button-image" src="images/add.png"> <?php echo $lang['nav_new'] ?></a></li>
+                          <li><a href="register.php"><img class="button-image" src="images/register.png"> <?php echo $lang['nav_settings'] ?></a></li>
+                          <li class="active"><a href="downloadExcel.php"><img class="button-image" src="images/download.png"> <?php echo $lang['nav_download'] ?></a></li>
+                          <li><a href="includes/logout.php"><img class="button-image" src="images/logout.png"> <?php echo $lang['nav_logout'] ?></a></li>
+                        </ul>
+                      </div><!--/.nav-collapse -->
+                    </div><!--/.container-fluid -->
+                  </nav>
+
+                <div style="background-color: #f8f8f8; padding: 10px; margin: 5px;">
+                <form action="downloadFunction.php" method="POST">
+                  <h4 class="text-center"><?php echo $lang['register_lang'] ?></h4>
+                  <div class="text-center">
+                    <p>
+                      <a href="<?php echo $link_download_en ?>" class="customLink" style="color: #000;"><?php echo $lang['register_lang1'] ?></a> | 
+                      <a href="<?php echo $link_download_tr ?>" class="customLink" style="color: #000;"><?php echo $lang['register_lang2'] ?></a> | 
+                      <a href="<?php echo $link_download_de ?>" class="customLink" style="color: #000;"><?php echo $lang['register_lang3'] ?></a>
+                    </p>
+                  </div>
+                  <button type="submit" class="btn btn-primary col-md-12 center-block btn-new-submit"><?php echo $lang['download'] ?></button>
+                </form>
+                </div>
+
+            </div>
+
+        <?php else : ?>
+            <?php header('Location: index.php'); ?>
+
+        <?php endif; ?>
+    </body>
+</html>

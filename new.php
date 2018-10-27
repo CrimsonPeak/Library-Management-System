@@ -1,8 +1,9 @@
 <?php
 include_once 'includes/db_connect.php';
 include_once 'includes/functions.php';
- 
+
 sec_session_start();
+include 'languages/langConfig.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,16 +34,16 @@ sec_session_start();
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                     </button>
-                    <h4>Add New Book</h4>
+                    <h4><?php echo $lang['new_title'] ?></h4>
                   </div>
 
                   <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right navBar">
-                      <li><a href="home.php"><img class="button-image" src="images/home.png"> Home</a></li>
-                      <li class="active"><a href="new.php"><img class="button-image" src="images/add.png"> New</a></li>
-                      <li><a href="register.php"><img class="button-image" src="images/register.png"> Settings</a></li>
-                      <li><a href="downloadExcel.php"><img class="button-image" src="images/download.png"> Download</a></li>
-                      <li><a href="includes/logout.php"><img class="button-image" src="images/logout.png"> Logout</a></li>
+                      <li><a href="home.php"><img class="button-image" src="images/home.png"> <?php echo $lang['nav_home'] ?></a></li>
+                      <li class="active"><a href="new.php"><img class="button-image" src="images/add.png"> <?php echo $lang['nav_new'] ?></a></li>
+                      <li><a href="register.php"><img class="button-image" src="images/register.png"> <?php echo $lang['nav_settings'] ?></a></li>
+                      <li><a href="downloadExcel.php"><img class="button-image" src="images/download.png"> <?php echo $lang['nav_download'] ?></a></li>
+                      <li><a href="includes/logout.php"><img class="button-image" src="images/logout.png"> <?php echo $lang['nav_logout'] ?></a></li>
                     </ul>
                   </div><!--/.nav-collapse -->
                 </div><!--/.container-fluid -->
@@ -51,24 +52,24 @@ sec_session_start();
               <form action="new-php.php" method="post">
                 <div class="form-row">
                   <div class="form-group col-md-12">
-                    <label for="isbn">ISBN</label>
+                    <label for="isbn"><?php echo $lang['new_ISBN'] ?></label>
                     <input type="number" class="form-control" name="isbn" id="isbn" placeholder="9781408855928">
                   </div>
                   <div class="form-group col-md-6">
-                    <label for="name">Name</label>
+                    <label for="name"><?php echo $lang['new_Name'] ?></label>
                     <input type="text" class="form-control" name="name" id="name" placeholder="Harry Potter and the Goblet of Fire">
                   </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="author">Author</label>
+                  <label for="author"><?php echo $lang['new_Author'] ?></label>
                   <input type="text" class="form-control" name="author" id="author" placeholder="Joanne K. Rowling">
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="publisher">Publisher</label>
+                  <label for="publisher"><?php echo $lang['new_Publisher'] ?></label>
                   <input type="text" class="form-control" name="publisher" id="publisher" placeholder="Bloomsbury">
                 </div>
                 <div class="form-group col-md-3">
-                  <label for="print_date">Print Date</label>
+                  <label for="print_date"><?php echo $lang['new_PrintDate'] ?></label>
                   <input type="text" class="form-control date-own" name="print_date" id="print_date" placeholder="2014">
                   
                   <script type="text/javascript">
@@ -79,7 +80,7 @@ sec_session_start();
                   </script>
                 </div>
                 <div class="form-group col-md-3">
-                  <label for="date_received">Date Received</label>
+                  <label for="date_received"><?php echo $lang['new_DateReceived'] ?></label>
                   <input type="text" class="form-control date-own2" name="date_received" id="date_received" placeholder="13.05.2017">
 
                   <script type="text/javascript">
@@ -89,11 +90,11 @@ sec_session_start();
                   </script>
                 </div>
                 <div class="form-group col-md-3">
-                  <label for="volume">Volume</label>
+                  <label for="volume"><?php echo $lang['new_Volume'] ?></label>
                   <input type="text" class="form-control" name="volume" id="volume" placeholder="4/7">
                 </div>
                 <div class="form-group col-md-3">
-                  <label for="language">Language</label>
+                  <label for="language"><?php echo $lang['new_Language'] ?></label>
                   <select type="text" name="language" id="language" class="form-control">
                     <?php 
                       $sqlLang = "SELECT * FROM language";
@@ -108,7 +109,7 @@ sec_session_start();
                   </select>
                 </div>
                 <div class="form-group col-md-3">
-                  <label for="category">Category</label>
+                  <label for="category"><?php echo $lang['new_Category'] ?></label>
                   <select type="text" name="category" id="category" class="form-control">
                     <?php 
                       $sqlCat = "SELECT * FROM category";
@@ -123,25 +124,25 @@ sec_session_start();
                   </select>
                 </div>
                 <div class="form-group col-md-3">
-                  <label for="read">Read</label>
+                  <label for="read"><?php echo $lang['new_Read'] ?></label>
                   <select type="text" name="read" id="read" class="form-control">
-                    <option selected>No</option>
-                    <option>Yes</option>
+                    <option value="No" selected><?php echo $lang['no'] ?></option>
+                    <option value="Yes"><?php echo $lang['yes'] ?></option>
                   </select>
                 </div>
                 <div class="form-group col-md-3">
-                  <label for="lend">Lend</label>
+                  <label for="lend"><?php echo $lang['new_Lend'] ?></label>
                   <select type="text" name="lend" id="lend" class="form-control">
-                    <option selected>No</option>
-                    <option>Yes</option>
+                    <option value="No" selected><?php echo $lang['no'] ?></option>
+                    <option value="Yes"><?php echo $lang['yes'] ?></option>
                   </select>
                 </div>
                 <div class="form-group col-md-9">
-                  <label for="lend_to">Lend To</label>
+                  <label for="lend_to"><?php echo $lang['new_LendTo'] ?></label>
                   <input type="text" class="form-control" name="lend_to" id="lend_to" placeholder="Hermine Granger">
                 </div>
 
-                <button type="submit" class="btn btn-primary col-md-12 center-block btn-new-submit">Add</button>
+                <button type="submit" class="btn btn-primary col-md-12 center-block btn-new-submit"><?php echo $lang['new_Add'] ?></button>
               </form>
             </div>
 

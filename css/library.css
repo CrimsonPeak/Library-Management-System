@@ -1,12 +1,6 @@
 html, body {
  background: url("../images/pattern.png") repeat;} 
 
-a, a:hover {
-  text-decoration-style: none;
-  color: #fff;
-}
-
-
 .button-image {
   	width: 30px;
   	height: 30px;
@@ -88,9 +82,7 @@ a, a:hover {
 }
 
 hr {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border-width: 5px;
+  border-width: 3px;
   height:0;
   -webkit-box-sizing:content-box;
   -moz-box-sizing:content-box;

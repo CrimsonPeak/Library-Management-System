@@ -3,6 +3,7 @@ include_once 'includes/db_connect.php';
 include_once 'includes/functions.php';
  
 sec_session_start();
+include 'languages/langConfig.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -53,20 +54,20 @@ sec_session_start();
                     </button>
                     <div class="form-inline">
                       <select type="text" name="searchSelection" id="searchSelection" class="form-control my-2 my-sm-0">
-                        <option value="Author" selected>Author</option>
-                        <option value="Name">Name</option>
+                        <option value="Author" selected><?php echo $lang['home_search_Author'] ?></option>
+                        <option value="Name"><?php echo $lang['home_search_Name'] ?></option>
                       </select>
-                      <input name="myInput" id="myInput" onkeyup="myFunction()" class="form-control mr-sm-2" type="text" placeholder="Search" autocomplete="off">
+                      <input name="myInput" id="myInput" onkeyup="myFunction()" class="form-control mr-sm-2" type="text" placeholder="<?php echo $lang['home_search'] ?>" autocomplete="off">
                     </div>
                   </div>
 
                   <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right navBar">
-                      <li class="active"><a href="home.php"><img class="button-image" src="images/home.png"> Home</a></li>
-                      <li><a href="new.php"><img class="button-image" src="images/add.png"> New</a></li>
-                      <li><a href="register.php"><img class="button-image" src="images/register.png"> Settings</a></li>
-                      <li><a href="downloadExcel.php"><img class="button-image" src="images/download.png"> Download</a></li>
-                      <li><a href="includes/logout.php"><img class="button-image" src="images/logout.png"> Logout</a></li>
+                      <li class="active"><a href="home.php"><img class="button-image" src="images/home.png"> <?php echo $lang['nav_home'] ?></a></li>
+                      <li><a href="new.php"><img class="button-image" src="images/add.png"> <?php echo $lang['nav_new'] ?></a></li>
+                      <li><a href="register.php"><img class="button-image" src="images/register.png"> <?php echo $lang['nav_settings'] ?></a></li>
+                      <li><a href="downloadExcel.php"><img class="button-image" src="images/download.png"> <?php echo $lang['nav_download'] ?></a></li>
+                      <li><a href="includes/logout.php"><img class="button-image" src="images/logout.png"> <?php echo $lang['nav_logout'] ?></a></li>
                     </ul>
                   </div><!--/.nav-collapse -->
                 </div><!--/.container-fluid -->
@@ -77,11 +78,11 @@ sec_session_start();
                   <div class="form-row">
                     <div class="form-group col-xs-5 col-sm-5 col-md-5 col-lg-5" style="margin-left: 20%;">
                       <select type="text" name="selection" id="selection" class="form-control">
-                        <option value="List All">List All</option>
-                        <option value="Unread">Unread</option>
-                        <option value="Read">Read</option>
-                        <option value="Lend">Lend</option>
-                        <optgroup label="Languages">
+                        <option value="List All"><?php echo $lang['home_filter_ListAll'] ?></option>
+                        <option value="Unread"><?php echo $lang['home_filter_Unread'] ?></option>
+                        <option value="Read"><?php echo $lang['home_filter_Read'] ?></option>
+                        <option value="Lend"><?php echo $lang['home_filter_Lend'] ?></option>
+                        <optgroup label="<?php echo $lang['home_filter_Languages'] ?>">
                           <?php 
                             $sqlLang = "SELECT * FROM language";
                             $result = $mysqli->query($sqlLang);
@@ -93,7 +94,7 @@ sec_session_start();
                             }
                           ?>
                         </optgroup>
-                        <optgroup label="Categories">
+                        <optgroup label="<?php echo $lang['home_filter_Categories'] ?>">
                           <?php 
                             $sqlCat = "SELECT * FROM category";
                             $result = $mysqli->query($sqlCat);
@@ -108,7 +109,7 @@ sec_session_start();
                       </select>
                     </div>
                     <div class="form-group col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                      <button name='filterBtn' id='filterBtn' type='submit' onclick="addFilter()" class='btn btn-primary pull-left center-block'>Filter</button>
+                      <button name='filterBtn' id='filterBtn' type='submit' onclick="addFilter()" class='btn btn-primary pull-left center-block'><?php echo $lang['home_filter_Filter'] ?></button>
                     </div>
                   </div>    
               </form>
@@ -119,8 +120,8 @@ sec_session_start();
               <table id="myTable" class="table table-striped table-light table-hover table-bordered">
                 <thead class="thead-dark">
                   <tr>
-                    <th class="text-right table-title col-xs-6 col-sm-6 col-md-6 col-lg-6" data-field="Name">Name</th>
-                    <th class="text-left table-title col-xs-6 col-sm-6 col-md-6 col-lg-6" data-field="Author">Author</th>
+                    <th class="text-right table-title col-xs-6 col-sm-6 col-md-6 col-lg-6" data-field="Name"><?php echo $lang['home_table_Name'] ?></th>
+                    <th class="text-left table-title col-xs-6 col-sm-6 col-md-6 col-lg-6" data-field="Author"><?php echo $lang['home_table_Author'] ?></th>
                   </tr>
                 </thead>
                 <tbody class="search-box" id="tableRow" name="tableRow">
@@ -135,7 +136,7 @@ sec_session_start();
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <button type="button" class="btn btn-dark col-md-12 center-block" data-dismiss="modal">Close</button>  
+                      <button type="button" class="btn btn-dark col-md-12 center-block" data-dismiss="modal"><?php echo $lang['home_modal_Close'] ?></button>  
                     </div>
                     <div class="modal-body">
                       <form action="update.php" method="post">
@@ -147,39 +148,39 @@ sec_session_start();
                           $result = $mysqli->query($sql);
                           $row = $result->fetch_array();
                           echo "<div class='form-group'>
-                                  <label for='id'>id</label>
+                                  <label for='id'>".$lang['home_modal_ID']."</label>
                                   <input name='id' type='text' class='form-control' id='id' value='".$row[$id_no]."' readonly>
                                 </div>
                                 <div class='form-group'>
-                                  <label for='isbn'>ISBN</label>
+                                  <label for='isbn'>".$lang['home_modal_ISBN']."</label>
                                   <input name='isbn' type='number' class='form-control' id='isbn' value='".$row[$isbn_no]."'>
                                 </div>
                                 <div class='form-group'>
-                                  <label for='name'>Name</label>
+                                  <label for='name'>".$lang['home_modal_Name']."</label>
                                   <input name='name' type='text' class='form-control' id='name' value='".$row[$name]."'>
                                 </div>
                                 <div class='form-group'>
-                                  <label for='author'>Author</label>
+                                  <label for='author'>".$lang['home_modal_Author']."</label>
                                   <input name='author' type='text' class='form-control' id='author' value='".$row[$author]."'>
                                 </div>
                                 <div class='form-group'>
-                                  <label for='publisher'>Publisher</label>
+                                  <label for='publisher'>".$lang['home_modal_Publisher']."</label>
                                   <input name='publisher' type='text' class='form-control' id='publisher' value='".$row[$publisher]."'>
                                 </div>
                                 <div class='form-group'>
-                                  <label for='print_date'>Print Date</label>
+                                  <label for='print_date'>".$lang['home_modal_PrintDate']."</label>
                                   <input  name='print_date' type='text' class='form-control date-own' id='print_date' value='".$row[$print_date]."'>
                                 </div>
                                 <div class='form-group'>
-                                  <label for='date_received'>Date Received</label>
+                                  <label for='date_received'>".$lang['home_modal_DateReceived']."</label>
                                   <input name='date_received' type='text' class='form-control date-own2' id='date_received' value='".$row[$date_received]."'>
                                 </div>
                                 <div class='form-group'>
-                                  <label for='volume'>Volume</label>
+                                  <label for='volume'>".$lang['home_modal_Volume']."</label>
                                   <input name='volume' type='text' class='form-control' id='volume' value='".$row[$volume]."'>
                                 </div>
                                 <div class='form-group'>
-                                  <label for='language'>Language</label>
+                                  <label for='language'>".$lang['home_modal_Language']."</label>
                                   <select type='text' name='language' id='language' class='form-control'>
                                     <option selected>".$row[$language]."</option>";
 
@@ -199,7 +200,7 @@ sec_session_start();
                           echo "</select>
                                 </div>
                                 <div class='form-group'>
-                                  <label for='category'>Category</label>
+                                  <label for='category'>".$lang['home_modal_Category']."</label>
                                   <select type='text' name='category' id='category' class='form-control'>
                                     <option selected>".$row[$category]."</option>";
 
@@ -216,31 +217,40 @@ sec_session_start();
                           $sql = "SELECT * FROM $table_name WHERE $id_no='$btnId'";
                           $result = $mysqli->query($sql);
                           $row = $result->fetch_array();
+
+                          if ($row[$read]=="Yes") {
+                            $TrueRead = $lang['yes'];
+                          } else {$TrueRead = $lang['no'];}
+
+                          if ($row[$lend]=="Yes") {
+                            $TrueLend = $lang['yes'];
+                          } else {$TrueLend = $lang['no'];}
+
                           echo "</select>
                                 </div>
                                 <div class='form-group'>
-                                  <label for='read'>Read</label>
+                                  <label for='read'>".$lang['home_modal_Read']."</label>
                                   <select type='text' name='read' id='read' class='form-control'>
-                                    <option selected>".$row[$read]."</option>
-                                    <option>No</option>
-                                    <option>Yes</option>
+                                    <option value='".$row[$read]."' selected>".$TrueRead."</option>
+                                    <option value='No'>".$lang['no']."</option>
+                                    <option value='Yes'>".$lang['yes']."</option>
                                   </select>
                                 </div>
                                 <div class='form-group'>
-                                  <label for='lend'>Lend</label>
+                                  <label for='lend'>".$lang['home_modal_Lend']."</label>
                                   <select type='text' name='lend' id='lend' class='form-control'>
-                                    <option selected>".$row[$lend]."</option>
-                                    <option>No</option>
-                                    <option>Yes</option>
+                                    <option value='".$row[$lend]."' selected>".$TrueLend."</option>
+                                    <option value='No'>".$lang['no']."</option>
+                                    <option value='Yes'>".$lang['yes']."</option>
                                   </select>
                                 </div>
                                 <div class='form-group'>
-                                  <label for='lend_to'>Lend To</label>
+                                  <label for='lend_to'>".$lang['home_modal_LendTo']."</label>
                                   <input name='lend_to' type='text' class='form-control' id='lend_to' value='".$row[$lend_to]."'>
                                 </div>
 
-                                <button name='save' id='save' type='submit' class='btn btn-primary col-md-3 pull-right'>Update</button>
-                                <button name='delete' id='delete' type='submit' class='btn btn-danger col-md-3 pull-left'>Delete</button>";
+                                <button name='save' id='save' type='submit' class='btn btn-primary col-md-3 pull-right'>".$lang['home_modal_Update']."</button>
+                                <button name='delete' id='delete' type='submit' class='btn btn-danger col-md-3 pull-left'>".$lang['home_modal_Delete']."</button>";
                         ?>
                       </form>
                     </div>
@@ -251,7 +261,7 @@ sec_session_start();
                 </div>
               </div>
 
-              <a id="back-to-top" href="#" class="btn btn-secondary btn-lg back-to-top" role="button" title="Back To Top" data-toggle="tooltip" data-placement="left"><img class="button-image" src="images/top.png"></a>
+              <a id="back-to-top" href="#" class="btn btn-secondary btn-lg back-to-top" role="button" title="<?php echo $lang['home_BackToTop'] ?>" data-toggle="tooltip" data-placement="left"><img class="button-image" src="images/top.png"></a>
 
               <!-- Script to filter table data by typing in SearchBar -->
               <script>
@@ -259,7 +269,7 @@ sec_session_start();
                   var input, filter, table, tr, td, i, searchSelect, strUser;
 
                   searchSelect = document.getElementById("searchSelection");
-                  strUser = searchSelect.options[searchSelect.selectedIndex].text;
+                  strUser = searchSelect.options[searchSelect.selectedIndex].value;
 
                   input = document.getElementById("myInput");
                   filter = input.value.toUpperCase();

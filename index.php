@@ -46,7 +46,7 @@ if (login_check($mysqli) == true) {
           <input class="btn btn-lg btn-primary btn-block" type="button" name="login" onclick="formhash(this.form, this.form.password);" value="Login"></input>
           
           <p></p>
-          <p class="mt-5 mb-3 text-muted">Dont forget to <a href="includes/logout.php">log out</a>. </br> You are 'logged <?php echo $logged ?>'</p>
+          <p class="mt-5 mb-3 text-muted">Dont forget to <a href="includes/logout.php" style="color: #000;">log out</a>. </br> You are 'logged <?php echo $logged ?>'</p>
           <p class="mt-5 mb-3 text-muted">Crimson Peak - 2018</p>
         </form>
 

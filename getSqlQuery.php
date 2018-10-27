@@ -6,7 +6,7 @@ include_once 'setSqlQuery.php';
 		if ($result->num_rows > 0) {
 			// output data of each row
 			while($row = $result->fetch_assoc()) {
-			  echo "<tr class='table-row' data-href='home.php?id=" . $row[$id_no] . "'><td name='name' id='name' class='text-right'>" . $row[$name] . "</td><td name='author' id='author' class='text-left'>" . $row[$author] . "</td></tr>";
+			  echo "<tr class='table-row' data-href='". $link_getSqlQuery_id . $row[$id_no] . "'><td name='name' id='name' class='text-right'>" . $row[$name] . "</td><td name='author' id='author' class='text-left'>" . $row[$author] . "</td></tr>";
 			}
 		}
 	}
@@ -17,7 +17,7 @@ include_once 'setSqlQuery.php';
 		if ($result->num_rows > 0) {
 			// output data of each row
 			while($row = $result->fetch_assoc()) {
-			  echo "<tr class='table-row' data-href='home.php?id=" . $row[$id_no] . "'><td name='name' id='name' class='text-right'>" . $row[$name] . "</td><td name='author' id='author' class='text-left'>" . $row[$author] . "</td></tr>";
+			  echo "<tr class='table-row' data-href='". $link_getSqlQuery_id . $row[$id_no] . "'><td name='name' id='name' class='text-right'>" . $row[$name] . "</td><td name='author' id='author' class='text-left'>" . $row[$author] . "</td></tr>";
 			}
 		}
 	}
