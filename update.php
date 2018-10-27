@@ -1,6 +1,5 @@
 <?php
   include_once 'includes/db_connect.php';
-  include_once 'includes/functions.php';
 
   if(!$mysqli){
   	die("Connection failed: " . mysqli_connect_error());
@@ -25,7 +24,7 @@
 
     if(mysqli_query($mysqli, $sqlSave)){
       mysqli_close($mysqli);
-      header("Location: home.php");
+      header("Location: index.php");
     }
     else{
       echo "Error: " . $sqlSave . "<br>" . mysqli_error($mysqli);
@@ -37,7 +36,7 @@
 
     if(mysqli_query($mysqli, $sqlDelete)){
       mysqli_close($mysqli);
-      header("Location: home.php");
+      header("Location: index.php");
     }
     else{
       echo "Error: " . $sqlDelete . "<br>" . mysqli_error($mysqli);
@@ -48,5 +47,5 @@
 
   mysqli_close($mysqli);
 
-  header("Location: home.php");
+  header("Location: index.php");
 ?>

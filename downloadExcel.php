@@ -1,8 +1,7 @@
 <?php
 include_once 'includes/db_connect.php';
-include_once 'includes/functions.php';
 
-sec_session_start();
+session_start();
 include 'languages/langConfig.php';
 ?>
 <!DOCTYPE html>
@@ -19,53 +18,47 @@ include 'languages/langConfig.php';
     </head>
 
     <body>
-        <?php if (login_check($mysqli) == true) : ?>
-            <div class="container">
+      <div class="container">
 
-                <!-- Static navbar -->
-                  <nav class="navbar navbar-default">
-                    <div class="container-fluid">
-                      <div class="navbar-header col-md-5">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                          <span class="sr-only">Toggle navigation</span>
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
-                        </button>
-                        <h4><?php echo $lang['register_title'] ?></h4>
-                      </div>
-
-                      <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav navbar-right navBar">
-                          <li><a href="home.php"><img class="button-image" src="images/home.png"> <?php echo $lang['nav_home'] ?></a></li>
-                          <li><a href="new.php"><img class="button-image" src="images/add.png"> <?php echo $lang['nav_new'] ?></a></li>
-                          <li><a href="register.php"><img class="button-image" src="images/register.png"> <?php echo $lang['nav_settings'] ?></a></li>
-                          <li class="active"><a href="downloadExcel.php"><img class="button-image" src="images/download.png"> <?php echo $lang['nav_download'] ?></a></li>
-                          <li><a href="includes/logout.php"><img class="button-image" src="images/logout.png"> <?php echo $lang['nav_logout'] ?></a></li>
-                        </ul>
-                      </div><!--/.nav-collapse -->
-                    </div><!--/.container-fluid -->
-                  </nav>
-
-                <div style="background-color: #f8f8f8; padding: 10px; margin: 5px;">
-                <form action="downloadFunction.php" method="POST">
-                  <h4 class="text-center"><?php echo $lang['register_lang'] ?></h4>
-                  <div class="text-center">
-                    <p>
-                      <a href="<?php echo $link_download_en ?>" class="customLink" style="color: #000;"><?php echo $lang['register_lang1'] ?></a> | 
-                      <a href="<?php echo $link_download_tr ?>" class="customLink" style="color: #000;"><?php echo $lang['register_lang2'] ?></a> | 
-                      <a href="<?php echo $link_download_de ?>" class="customLink" style="color: #000;"><?php echo $lang['register_lang3'] ?></a>
-                    </p>
-                  </div>
-                  <button type="submit" class="btn btn-primary col-md-12 center-block btn-new-submit"><?php echo $lang['download'] ?></button>
-                </form>
+          <!-- Static navbar -->
+            <nav class="navbar navbar-default">
+              <div class="container-fluid">
+                <div class="navbar-header col-md-5">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <h4><?php echo $lang['register_title'] ?></h4>
                 </div>
 
+                <div id="navbar" class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav navbar-right navBar">
+                    <li><a href="index.php"><img class="button-image" src="images/home.png"> <?php echo $lang['nav_home'] ?></a></li>
+                    <li><a href="new.php"><img class="button-image" src="images/add.png"> <?php echo $lang['nav_new'] ?></a></li>
+                    <li><a href="register.php"><img class="button-image" src="images/register.png"> <?php echo $lang['nav_settings'] ?></a></li>
+                    <li class="active"><a href="downloadExcel.php"><img class="button-image" src="images/download.png"> <?php echo $lang['nav_download'] ?></a></li>
+                  </ul>
+                </div><!--/.nav-collapse -->
+              </div><!--/.container-fluid -->
+            </nav>
+
+          <div style="background-color: #f8f8f8; padding: 10px; margin: 5px;">
+          <form action="downloadFunction.php" method="POST">
+            <h4 class="text-center"><?php echo $lang['register_lang'] ?></h4>
+            <div class="text-center">
+              <p>
+                <a href="<?php echo $link_download_en ?>" class="customLink" style="color: #000;"><?php echo $lang['register_lang1'] ?></a> | 
+                <a href="<?php echo $link_download_tr ?>" class="customLink" style="color: #000;"><?php echo $lang['register_lang2'] ?></a> | 
+                <a href="<?php echo $link_download_de ?>" class="customLink" style="color: #000;"><?php echo $lang['register_lang3'] ?></a>
+              </p>
             </div>
+            <button type="submit" class="btn btn-primary col-md-12 center-block btn-new-submit"><?php echo $lang['download'] ?></button>
+          </form>
+          </div>
 
-        <?php else : ?>
-            <?php header('Location: index.php'); ?>
+      </div>
 
-        <?php endif; ?>
     </body>
 </html>

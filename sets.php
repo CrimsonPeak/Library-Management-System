@@ -1,6 +1,5 @@
 <?php
   include_once 'includes/db_connect.php';
-  include_once 'includes/functions.php';
 
   if(!$mysqli){
   	die("Connection failed: " . mysqli_connect_error());

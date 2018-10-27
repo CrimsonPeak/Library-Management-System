@@ -19,7 +19,7 @@ $lend = LEND;
 $lend_to = LEND_TO;
 
 // If you try it on a real server than you might be add to the start of this link your url of your website
-$link_getSqlQuery_id = "home.php?id=";
+$link_getSqlQuery_id = "index.php?id=";
 $link_register_en = "register.php?lang=en";
 $link_register_tr = "register.php?lang=tr";
 $link_register_de = "register.php?lang=de";
