@@ -1,6 +1,7 @@
 # Library-Management-System
 Library management system for personal (small) libraries. Using PHP, bootstrap, javascript, html and css.
 
+# [LIVE DEMO](http://crimson-peak.com/projects/library/)
 # [SEE WHAT IT LOOKS LIKE](https://www.youtube.com/watch?v=O8EXLeLzDe8)
 
 # Database Settings
